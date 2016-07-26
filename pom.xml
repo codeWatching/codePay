@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.codewatching.codepay</groupId>
+	<artifactId>codepay-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+	<description>The parent project of gaea</description>
+	<inceptionYear>2015</inceptionYear>
+	<modules>
+		<!-- 公共模块 -->
+		<module>codepay-common</module>
+		<!-- 对象实体 -->
+		<module>codepay-model</module>
+		<!-- DAO -->
+		<module>codepay-core</module>
+		<!-- 服务 -->
+		<module>codepay-service</module>
+		<!-- 服务启动 -->
+		<module>codepay-provider</module>
+		<!-- 服务协议 -->
+		<module>codepay-protocol</module>
+		<!-- RestFul对外接口 -->
+		<module>codepay-gateway</module>
+		<!-- 运营管理 -->
+		<module>codepay-admin</module>
+		<!-- 消息通知 -->
+		<module>codepay-notify</module>
+		<!-- 公共模块 -->
+		<module>codepay-timer-reconciliation</module>
+		<!-- 公共模块 -->
+		<module>codepay-timer-settlement</module>
+	</modules>
+
+	<properties>
+		<file_encoding>UTF-8</file_encoding>
+		<!-- Common libs -->
+		<zkclient_version>0.5</zkclient_version>
+		<spring_version>3.2.16.RELEASE</spring_version>
+		<httpclient_version>4.1.2</httpclient_version>
+		<jetty_version>6.1.26</jetty_version>
+		<jedis_version>2.6.2</jedis_version>
+		<resolvers_version>4.1</resolvers_version>
+		<beanutils_version>1.9.2</beanutils_version>
+		<codec_version>1.10</codec_version>
+		<io_version>2.4</io_version>
+		<lang3_version>3.4</lang3_version>
+		<fileupload_version>1.3.1</fileupload_version>
+		<collections_version>3.2.1</collections_version>
+		<pool_version>1.6</pool_version>
+		<mysql_version>5.1.29</mysql_version>
+		<c3p0_version>0.9.1.2</c3p0_version>
+		<mybatis_version>3.2.4</mybatis_version>
+		<mybatis_spring_version>1.2.2</mybatis_spring_version>
+		<aspectjweaver_version>1.7.3</aspectjweaver_version>
+		<aopalliance_version>1.0</aopalliance_version>
+		<nodep_version>2.1</nodep_version>
+		<dom4j_version>1.6.1</dom4j_version>
+		<jaxen_version>1.1.4</jaxen_version>
+		<quartz_version>1.8.6</quartz_version>
+		<!-- Log libs -->
+		<slf4j_version>1.7.7</slf4j_version>
+		<logback_version>1.1.2</logback_version>
+		<!-- Test libs -->
+		<junit_version>4.10</junit_version>
+		<!-- Build args -->
+		<!--<argline>-server -Xms64m -Xmx64m -XX:PermSize=64m -XX:MaxPermSize=64m</argline> -->
+		<skip_maven_deploy>false</skip_maven_deploy>
+		<updateReleaseInfo>true</updateReleaseInfo>
+		<project.build.sourceEncoding>${file_encoding}</project.build.sourceEncoding>
+		<!-- for maven compiler plugin -->
+		<maven_compiler_plugin_version>2.5.1</maven_compiler_plugin_version>
+		<java_source_version>1.6</java_source_version>
+		<java_target_version>1.6</java_target_version>
+		<servlet_version>3.1.0</servlet_version>
+		<jstl_version>1.2</jstl_version>
+		<freemarker_version>2.3.14</freemarker_version>
+		<jackson_version>1.9.13</jackson_version>
+		<dubbo_version>2.5.7</dubbo_version>
+		<thrift_version>0.9.2</thrift_version>
+		<fastjson_version>1.2.6</fastjson_version>
+		<zookeeper_version>3.4.6</zookeeper_version>
+		<mail_version>1.4.7</mail_version>
+		<commons-pool_version>2.2</commons-pool_version>
+		<morphia_version>1.0.1</morphia_version>
+		<mongo_version>3.0.3</mongo_version>
+		<datacenter_version>0.0.4</datacenter_version>
+		<rop_version>1.1.5</rop_version>
+		<thumbnailator_version>0.4.8</thumbnailator_version>
+		<pinyin4j_version>2.5.0</pinyin4j_version>
+		<commons_net_version>3.4</commons_net_version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.zhangyue.datacenter</groupId>
+				<artifactId>datacenter-client</artifactId>
+				<version>${datacenter_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.zhangyue.datacenter</groupId>
+				<artifactId>datacenter-protocol</artifactId>
+				<version>${datacenter_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.coobird</groupId>
+				<artifactId>thumbnailator</artifactId>
+				<version>${thumbnailator_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.coobird</groupId>
+				<artifactId>thumbnailator</artifactId>
+				<version>${thumbnailator_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+				<version>${zookeeper_version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>com.sun.jmx</groupId>
+						<artifactId>jmxri</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.sun.jdmk</groupId>
+						<artifactId>jmxtools</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>javax.jms</groupId>
+						<artifactId>jms</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.thrift</groupId>
+				<artifactId>libthrift</artifactId>
+				<version>${thrift_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.101tec</groupId>
+				<artifactId>zkclient</artifactId>
+				<version>${zkclient_version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>${jedis_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.rop</groupId>
+				<artifactId>rop</artifactId>
+				<version>${rop_version}</version>
+			</dependency>
+			<!-- json begin -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>dubbo</artifactId>
+				<version>${dubbo_version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- json end -->
+			<!-- utils begin -->
+			<dependency>
+				<groupId>org.codehaus.httpcache4j.resolvers</groupId>
+				<artifactId>resolvers-commons-httpclient</artifactId>
+				<version>${resolvers_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${beanutils_version}</version>
+				<exclusions>
+					<!-- 使用了jcl104-over-slf4j转到slf4j -->
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${codec_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${lang3_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${io_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${fileupload_version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-io</groupId>
+						<artifactId>commons-io</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>${collections_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-pool</groupId>
+				<artifactId>commons-pool</artifactId>
+				<version>${pool_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-pool2</artifactId>
+				<version>${commons-pool_version}</version>
+			</dependency>
+			<!-- utils end -->
+			<dependency>
+				<groupId>c3p0</groupId>
+				<artifactId>c3p0</artifactId>
+				<version>${c3p0_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql_version}</version>
+			</dependency>
+			<!-- mybatis begin -->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis_version}</version>
+				<exclusions>
+					<!-- 使用了jcl104-over-slf4j转到slf4j -->
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${mybatis_spring_version}</version>
+			</dependency>
+			<!-- mybatis end -->
+			<!-- spring begin -->
+			<!-- Core utilities used by other modules. Define this if you use Spring 
+				Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring_version}</version>
+			</dependency>
+			<!-- Expression Language (depends on spring-core) Define this if you use 
+				Spring Expression APIs (org.springframework.expression.*) -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
+				<version>${spring_version}</version>
+			</dependency>
+			<!-- Bean Factory and JavaBeans utilities (depends on spring-core) Define 
+				this if you use Spring Bean APIs (org.springframework.beans.*) -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring_version}</version>
+			</dependency>
+			<!-- Aspect Oriented Programming (AOP) Framework (depends on spring-core, 
+				spring-beans) Define this if you use Spring AOP APIs (org.springframework.aop.*) -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring_version}</version>
+			</dependency>
+			<!-- Application Context (depends on spring-core, spring-expression, spring-aop, 
+				spring-beans) This is the central artifact for Spring's Dependency Injection 
+				Container and is generally always defined -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring_version}</version>
+			</dependency>
+			<!-- Transaction Management Abstraction (depends on spring-core, spring-beans, 
+				spring-aop, spring-context) Define this if you use Spring Transactions or 
+				DAO Exception Hierarchy (org.springframework.transaction.*/org.springframework.dao.*) -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring_version}</version>
+			</dependency>
+			<!-- JDBC Data Access Library (depends on spring-core, spring-beans, spring-context, 
+				spring-tx) Define this if you use Spring's JdbcTemplate API (org.springframework.jdbc.*) -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring_version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring_version}</version>
+				<exclusions>
+					<!-- 使用了jcl104-over-slf4j转到slf4j -->
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring_version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring_version}</version>
+			</dependency>
+			<!-- spring end -->
+
+
+			<!-- Quartz -->
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>${quartz_version}</version>
+			</dependency>
+			<!-- spring 事务依赖 begin -->
+			<!-- 事务配置依赖的包 -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectjweaver_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>aopalliance</groupId>
+				<artifactId>aopalliance</artifactId>
+				<version>${aopalliance_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib-nodep</artifactId>
+				<version>${nodep_version}</version>
+			</dependency>
+			<!-- spring 事务依赖 end -->
+
+			<dependency>
+				<groupId>dom4j</groupId>
+				<artifactId>dom4j</artifactId>
+				<version>${dom4j_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jaxen</groupId>
+				<artifactId>jaxen</artifactId>
+				<version>${jaxen_version}</version>
+			</dependency>
+			<!-- Log libs -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j_version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback_version}</version>
+			</dependency>
+			<!-- Test libs -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit_version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${servlet_version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl_version}</version>
+			</dependency>
+			<!-- security end -->
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>${freemarker_version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>${jackson_version}</version>
+			</dependency>
+			<!-- mail begin -->
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>${mail_version}</version>
+			</dependency>
+			<!-- mail end -->
+
+			<dependency>
+				<groupId>org.mongodb.morphia</groupId>
+				<artifactId>morphia</artifactId>
+				<version>${morphia_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mongodb</groupId>
+				<artifactId>mongo-java-driver</artifactId>
+				<version>${mongo_version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.belerweb</groupId>
+				<artifactId>pinyin4j</artifactId>
+				<version>${pinyin4j_version}</version>
+			</dependency>
+			<!-- ftp util -->
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>${commons_net_version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven_compiler_plugin_version}</version>
+					<configuration>
+						<source>${java_source_version}</source>
+						<target>${java_target_version}</target>
+						<showWarnings>true</showWarnings>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<url>http://mvn.zhangyue.com:8081/nexus/content/repositories/releases</url>
+		</repository>
+	</distributionManagement>
+
+	<!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
+	<repositories>
+		<repository>
+			<id>nexus-public</id>
+			<name>Team Nexus Repository</name>
+			<url>http://mvn.zhangyue.com:8081/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+	<!-- 设定除中央插件仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus-public</id>
+			<name>Team Nexus Repository</name>
+			<url>http://mvn.zhangyue.com:8081/nexus/content/groups/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
+</project>
