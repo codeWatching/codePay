@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+
+<configuration>
+	<substitutionProperty name="log.base" value="../logs/codepay" />
+	<jmxConfigurator />
+
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date %-5level %logger{0} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>UTF-8</Encoding>
+		<File>${log.base}.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log.base}.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+			<!-- zhuhui motify 2011-04-10 增加只保留15天记录 通过时间触发-->
+			<maxHistory>15</maxHistory> 
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%date [%thread] %-5level %logger{0} - %msg%n</pattern>
+		</layout>
+	</appender>
+ 
+	<logger name="org.springframework" level="ERROR" />
+	<logger name="org.quartz" level="ERROR" />
+	<logger name="org.mybatis" level="ERROR" />
+	<logger name="org.apache" level="ERROR" />
+	<logger name="com.opensymphony.xwork2" level="ERROR" />
+	<logger name="com.opensymphony.xwork2.ognl.OgnlValueStack" level="ERROR" />
+	<logger name="com.googlecode" level="ERROR" />
+	<logger name="com.schooner" level="ERROR" />
+    <logger name="com.whalin" level="ERROR" />
+    <logger name="com.mchange" level="ERROR" />
+    <logger name="net.sf.json" level="ERROR" />
+    
+    <!--log4jdbc -->
+    <logger name="jdbc.sqltiming" level="DEBUG"/>
+    <logger name="com.ibatis" level="DEBUG" />
+    <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG" />
+    <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" />
+    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" />
+    <logger name="java.sql.Connection" level="DEBUG" />
+    <logger name="java.sql.Statement" level="DEBUG" />
+    <logger name="java.sql.PreparedStatement" level="DEBUG" />
+    <logger name="java.sql.ResultSet" level="DEBUG" />
+    <logger name="com.zhangyue" level="DEBUG" />
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="logfile" />
+	</root>
+</configuration>
+

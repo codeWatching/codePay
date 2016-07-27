@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:rop="http://www.rop.com/schema/rop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.rop.com/schema/rop http://www.rop.com/schema/rop/rop-1.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+    <!-- 启动Rop框架 -->
+    <rop:annotation-driven
+            id="app"
+            session-manager="appSessionManager"
+            app-secret-manager="appKeySecretManager"
+            service-access-controller="appServiceAccessController"
+            formatting-conversion-service="conversionService"
+            ext-error-base-names="i18n/rop/ropError/raiseError"
+            service-timeout-seconds="100"
+            invoke-times-controller="appInvokeTimesController"
+            upload-file-max-size="10"
+            upload-file-types="png,gif"
+            core-pool-size="200"
+            max-pool-size="500"
+            queue-capacity="50"
+            keep-alive-seconds="300"
+            sign-enable="false"/>
+
+    <bean id="appSessionManager" class="org.codepay.gateway.rop.AppSessionManager" />
+    <bean id="appKeySecretManager" class="org.codepay.gateway.rop.AppKeySecretManager"/>
+    <bean id="appServiceAccessController" class="org.codepay.gateway.rop.AppServiceAccessController"/>
+    <bean id="appInvokeTimesController" class="org.codepay.gateway.rop.AppInvokeTimesController"/>
+    <!--设置自定义的类型转换服务，注册自定义的类型转换器-->
+    <bean id="conversionService"
+          class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="org.codepay.gateway.converter.DateConverter"/>
+            </set>
+        </property>
+    </bean>
+
+    <!--注册拦截器，可配置多个-->
+    <!--<rop:interceptors>
+    </rop:interceptors>-->
+
+    <!--注册监听器，可配置多具-->
+    <!--<rop:listeners>
+    </rop:listeners>-->
+
+    <!--自定义method,appKey等这些系统级参数的参数名-->
+    <rop:sysparams jsonp-param-name="__invoke"/>
+
+</beans>
