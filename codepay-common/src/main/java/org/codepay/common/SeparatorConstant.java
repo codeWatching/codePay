@@ -1,8 +1,5 @@
 package org.codepay.common;
 
-/**
- * Created by wangliping on 15-8-4.
- */
 public final class SeparatorConstant {
 
     /**
