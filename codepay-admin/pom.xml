@@ -7,9 +7,7 @@
     <artifactId>codepay-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.codewatching.codepay</groupId>
   <artifactId>codepay-admin</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>codepay-admin Maven Webapp</name>
   <url>http://maven.apache.org</url>

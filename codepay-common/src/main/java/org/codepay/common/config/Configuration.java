@@ -149,5 +149,4 @@ public class Configuration {
         }
         return schedConfiguration;
     }
-
 }

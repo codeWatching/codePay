@@ -4,7 +4,7 @@ package org.codepay.gateway.model.request;
  * @date 2016年7月27日
  * @author lisai
  */
-public class MerchantRequest {
+public class MerchantPayRequest {
     private String payKey; // 企业支付KEY
     private String productName;  // 商品名称
     private String orderNo ; // 订单编号
@@ -23,7 +23,7 @@ public class MerchantRequest {
     private String field4; // 扩展字段4
     private String field5; // 扩展字段5
     
-    public MerchantRequest(String payKey, String productName, String orderNo, String orderPrice, String payWayCode,
+    public MerchantPayRequest(String payKey, String productName, String orderNo, String orderPrice, String payWayCode,
                            String orderIp, String orderDate, String orderPeriod, String returnUrl, String notifyUrl,
                            String remark, String sign, String field1, String field2, String field3, String field4,
                            String field5){
